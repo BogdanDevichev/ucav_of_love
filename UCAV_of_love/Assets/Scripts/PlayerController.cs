@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         playerRb.AddForce(Vector3.right * speed * horizontalInput * Time.deltaTime, ForceMode.Impulse);
         playerRb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime, ForceMode.Impulse);
+        if (transform.position.x > xBound
+         || transform.position.x < -xBound
+         || transform.position.z > positiveZBound
+         || transform.position.z < negativeZBound)
+            playerRb.velocity = Vector3.zero;
         if (transform.position.x > xBound)
             transform.position = new Vector3(xBound,
                                              transform.position.y,
